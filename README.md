@@ -1,7 +1,7 @@
 # Automatic Music Tagger
 This tool helps you tag your music automatically and in a standard and coherent way using the iTunes API.
 
-*IMPORTANT NPTE*: For now this tools only supports songs in FLAC format. FPlease, feel free to submit a pull request to add compatibiliy with more types.
+*IMPORTANT NOTE*: For now this tools only supports songs in FLAC format. FPlease, feel free to submit a pull request to add compatibiliy with more types.
 
 ## Prerequisites
 You must have installed Python 2.7 in your computer to make use of this tool.
@@ -14,6 +14,8 @@ After cloning this repo you should follow this steps:
 3. Once finished, all the songs processed succesfully will be fully tagged.
 
 You can also drag the songs you want to tag to the mentioned script.
+
+Note: You may experience a bit of delay if you are trying to tag many songs at once, this may occur to avoid exceeding the limit set by the iTunes API service policy.
 
 ## Contributing
 
