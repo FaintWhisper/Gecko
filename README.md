@@ -7,7 +7,7 @@ This tool helps you tag your music automatically and in a standard and coherent 
 You must have installed Python 2.7 in your computer to make use of this tool.
 
 ## Use
-After cloning this repo you should follow this steps:
+After downloading the app from the releases tab, you should follow this steps to make use of the tool.
 
 1. First, you need to place your songs inside the root directory of the project, alonside the script named 'Tag.bat'.
 2. After that, run the script aforementioned (Tag.bat) and wait until it finishes.
@@ -18,6 +18,9 @@ You can also drag the songs you want to tag to the mentioned script.
 Note: You may experience a bit of delay if you are trying to tag many songs at once, this may occur to avoid exceeding the limit set by the iTunes API service policy.
 
 ## Contributing
+If you didn't downloaded the packed version from the releases tab and instead you cloned the repo you will need to download the following binaries of my other projects and place them inside the '/bin' folder:
+- ArtworkDownloader - https://github.com/RYSKZ/Artwork-Downloader/releases/tag/1.0.0
+- Get a song genre from Beatport - https://github.com/RYSKZ/Get-a-song-genre-from-Beatport/releases/tag/1.0.0
 
 If you want to contribute to this project you're more than welcome, just send a pull request and you are done!
 
