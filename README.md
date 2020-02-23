@@ -31,3 +31,7 @@ If you want to contribute to this project you're more than welcome, just send a 
 ## License
 
 This project is licensed under the GNU v3.0 License.
+
+## Acknowledgments
+
+Thanks to the team behind the library 'pyhton-itunes': https://github.com/ocelma/python-itunes
