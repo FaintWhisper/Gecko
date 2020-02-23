@@ -1,5 +1,5 @@
 # Automatic Music Tagger
-This tool helps you tag your music automatically and in a standard and coherent way using the iTunes API. The matching efficency is about 75~80%, higher that most of the tools currently available out there.
+This tool helps you tag your music automatically and in a standard and coherent way using the iTunes API. The matching efficency is about 75~80%, higher that most of the tools currently available out there, although it was designed in the begining to work especially well with EDM songs.
 
 *IMPORTANT NOTE*: For now this tools only supports songs in FLAC format. Please, feel free to submit a pull request to add compatibiliy with more types.
 
