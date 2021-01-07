@@ -6,16 +6,21 @@ The matching efficency is about 75~80%, higher than most of the tools currently 
 Currently, **only FLAC Format is supported**, please, feel free to submit a pull request to add compatibiliy with more formats.
 
 ## Prerequisites
-You must have installed Python 2.7 in your computer to make use of this tool.
+You must have Python 2.7 installed in your computer to make use of this tool.
 
 ## Use
 After downloading the app from the releases tab, you should follow this steps to make use of the tool.
 
-1. First, you need to place your songs inside the root directory of the project, alonside the script named 'Tag.bat'.
-2. After that, run the script aforementioned (Tag.bat) and wait until it finishes.
-3. Once finished, all the songs that have been processed succesfully will be fully tagged.
+1. Open the terminal and type the following command
+```
+py -2 -m pip install -r requirements.txt
+```
+2. Place your songs inside the root directory of the project, alonside the script named 'Tag.bat'.
+3. Run the script by double clicking it and wait for it to finish.
 
-*Tip*: You can also drag the songs you want to tag to the mentioned script.
+Once finished, all the songs that have been processed succesfully will be fully tagged.
+
+*Tip*: You can also drag and drop the songs you want to tag into the script.
 
 **Note**: You may experience a bit of delay if you are trying to tag many songs at once, this may occur to avoid exceeding the limit set by the iTunes API service policy.
 
