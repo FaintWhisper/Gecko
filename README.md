@@ -8,15 +8,17 @@ Currently, **only FLAC Format is supported**, please, feel free to submit a pull
 ## Prerequisites
 You must have Python 2.7 installed in your computer to make use of this tool.
 
-## Use
-After downloading the app from the releases tab, you should follow this steps to make use of the tool.
-
-1. Open the terminal and type the following command
+## Installation
+1. Download the latest version of the program from the releases tab.
+2. Extract the contents inside a folder.
+3. Open a terminal windows and type the following command:
 ```
 py -2 -m pip install -r requirements.txt
 ```
-2. Place your songs inside the root directory of the project, alonside the script named 'Tag.bat'.
-3. Run the script by double clicking it and wait for it to finish.
+
+##Use
+1. Place your songs inside the root directory of the project, alonside the script named 'Tag.bat'.
+2. Run the script by double clicking it and wait for it to finish.
 
 Once finished, all the songs that have been processed succesfully will be fully tagged.
 
