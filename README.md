@@ -1,7 +1,7 @@
 # Gecko: An automatic tagger for your music
 This tool helps you tag your music automatically in a standard and coherent way using the iTunes Store API.
 
-The matching efficency is about 75~80%, higher than most of the tools currently available out there (although it was designed in the begining to work especially well with EDM songs).
+The matching efficency is somewhere between 75~80%, higher than most of the tools currently available out there (although it was designed in the begining to work especially well with EDM songs).
 
 **Important**: Currently, **only FLAC Format is supported**, please, feel free to submit a pull request to add compatibiliy with other formats.
 
