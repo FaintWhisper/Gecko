@@ -1,22 +1,24 @@
 @echo off
 
-Title iTunes Tagger
+Title Gecko Music Tagger
 
-set INPUT_PATH="C:\Users\amit1\Deezloader Music"
+:: Change these paths according to your needs
+set INPUT_PATH="C:\Users\amit1\Downloads"
 set OUTPUT_PATH="C:\Users\amit1\Music"
 
 echo.
-echo 						--- iTunes Tagger ---
+echo 						--- Gecko Music Tagger ---
 echo.
-
-cd bin
 
 if %1.==. (
     @echo on
 
-    py tag.py -i %INPUT_PATH% -o %OUTPUT_PATH%
+    py src/tag.py -i %INPUT_PATH% -o %OUTPUT_PATH%
 ) else (
     @echo on
 
-    py tag.py -i %* -o %OUTPUT_PATH%
+    py src/tag.py -i %* -o %OUTPUT_PATH%
 )
+
+@echo off
+timeout /t 2 /nobreak > NUL
