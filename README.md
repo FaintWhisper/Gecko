@@ -3,7 +3,7 @@ This tool helps you tag your music automatically in a standard and coherent way 
 
 The matching efficency is about 75~80%, higher than most of the tools currently available out there (although it was designed in the begining to work especially well with EDM songs).
 
-Currently, **only FLAC Format is supported**, please, feel free to submit a pull request to add compatibiliy with other formats.
+**Important**: Currently, **only FLAC Format is supported**, please, feel free to submit a pull request to add compatibiliy with other formats.
 
 ## Prerequisites
 You must have Python 3.5+ installed in your computer to make use of this tool.
@@ -16,33 +16,31 @@ You must have Python 3.5+ installed in your computer to make use of this tool.
 python -m pip install -r requirements.txt
 ```
 
-##Use
+## Use
 1. Place your songs inside the root directory of the project, alonside the script named 'tag.bat'.
 2. Run the script by double clicking it and wait for it to finish.
 
-Once finished, all the songs that have been processed succesfully will be fully tagged.
-
 *Tip*: You can also drag and drop the songs you want to tag over the script.
 
-**Note**: You may experience a bit of delay if you are trying to tag many songs at once, the script may sleep occasionally to avoid exceeding the requests stablished in the iTunes Store API service policy.
+Once finished, all the songs that have been processed succesfully will be fully tagged, although, you may experience a bit of delay if you are trying to tag many songs at once, the script may sleep occasionally to avoid exceeding the requests stablished in the iTunes Store API service policy.
 
 ## Additional Features
-You can get a more accurate genre tagging using a Beatport scrapper I made previously, you can get the binary [here](https://github.com/RYSKZ/Get-a-song-genre-from-Beatport/releases/tag/1.0.0)
-Also, if you want to update the album artworks of your music, there's another project I built previously for finding and downloading high quality album artworks scrapping iTunes Store, you can get the binary [here](https://github.com/RYSKZ/Artwork-Downloader/releases/tag/1.0.0)
+- You can get a more accurate genre tagging using a Beatport scrapper I made previously, you can get the binary [here](https://github.com/RYSKZ/Get-a-song-genre-from-Beatport/releases/tag/1.0.0)
+- Also, if you want to update the album artworks of your music, there's another project I built previously for finding and downloading high quality album artworks scrapping iTunes Store, you can get the binary [here](https://github.com/RYSKZ/Artwork-Downloader/releases/tag/1.0.0)
 
 Once downloaded, place them inside the "./bin" folder.
-
-## Contributing
-If you want to contribute to this project you're more than welcome, just send a pull request and you are done!
 
 ## Authors
 
 * **Amit Karamchandani Batra** - [RYSKZ](https://github.com/RYSKZ)
 
-## License
-
-This project is licensed under the GNU v3.0 License.
+## Contributing
+If you want to contribute to this project you're more than welcome, just send a pull request and you are done!
 
 ## Acknowledgments
 
 Thanks to the team behind the library 'itunespy': https://github.com/sleepyfran/itunespy
+
+## License
+
+This project is licensed under the GNU v3.0 License.
