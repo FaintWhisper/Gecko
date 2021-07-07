@@ -68,19 +68,21 @@ def request_options():
     config = configparser.ConfigParser()
 
     if not os.path.exists(configurations_file):
-        config['DEFAULT'] = {"AutomaticTaggingBehaviour": 1, "ArtworkReplacement": 1}
+        config["DEFAULT"] = {"AutomaticTagging": 1, "ArtworkReplacement": 1}
 
-        print("\nPlease enable or disable the following features according to your needs:")
-        print("\nAutomatic tagging behaviour:")
+        print(
+            "\nPlease enable or disable the following features according to your needs:"
+        )
+        print("\nAutomatic Tagging :")
         print("1. Disabled, ask the user before tagging (Default)")
         print("2. Enabled, automatically tags each song with the best matching result")
 
         auto_tag = input("\nEnter selection: ") or "1"
         auto_tag = auto_tag
 
-        config['DEFAULT']["AutomaticTaggingBehaviour"] = auto_tag
+        config["DEFAULT"]["AutomaticTagging"] = auto_tag
 
-        print("\nArtwork replacement:")
+        print("\nArtwork Replacement:")
         print("1. Disabled, preserve each song's current artwork (Default)")
         print(
             "2. Enabled, automatically switches each song's artwork for the best matching result"
@@ -89,19 +91,19 @@ def request_options():
         artwork_replacement = input("\nEnter selection: ") or "1"
         artwork_replacement = artwork_replacement
 
-        config['DEFAULT']["ArtworkReplacement"] = artwork_replacement
+        config["DEFAULT"]["ArtworkReplacement"] = artwork_replacement
 
         with open(configurations_file, "w") as configfile:
             config.write(configfile)
-        
+
         print("")
 
     config.read(configurations_file)
 
-    if config['DEFAULT']["AutomaticTaggingBehaviour"] == "2":
+    if config["DEFAULT"]["AutomaticTagging"] == "2":
         OPTIONS.append("-A")
 
-    if config['DEFAULT']["ArtworkReplacement"] == "1":
+    if config["DEFAULT"]["ArtworkReplacement"] == "1":
         OPTIONS.append("-p")
 
 
@@ -212,14 +214,7 @@ def get_tags(filename, query):
 
         for index, result in enumerate(results):
             sys.stdout.write(
-                "\n"
-                + str(index + 1)
-                + ". Title: "
-                + result.track_name
-                + ", Album: "
-                + result.collection_name
-                + ", Artists: "
-                + result.artist_name
+                f"\n{index + 1}.Title: {result.track_name}, Album: {result.collection_name}, Artists: {result.artist_name}"
             )
 
             if index == 0:
@@ -395,21 +390,13 @@ def print_tags(tags):
         sys.stdout.write(tags["artists"][0])
 
     print("\nRelease Date: " + tags["release_date"])
-    print("Track Number: " + str(tags["track_number"]))
+    print(f"Track Number: " + {tags["track_number"]})
     print("Genre: " + tags["genre"])
     print("Album Artist: " + tags["album_artist"])
-    print("Disc Number: " + str(tags["disc_number"]))
+    print(f"Disc Number: " + {tags["disc_number"]})
     minutes = int(tags["duration"] / 1000 / 60)
     seconds = int(tags["duration"] / 1000 / 60 % 1 * 100)
-    print("Duration: " + str(minutes) + "m " + str(seconds) + "s")
-
-    """
-	print "\nAvailable Artworks:"
-	artworks = track.get_artwork()
-	for index, artwork in enumerate(artworks):
-		print "Artwork #" + str(index + 1) + " (" + str(artwork) + "x" + str(artwork) + "):"
-		print artworks[artwork] + "\n"
-	"""
+    print(f"Duration: {minutes}m {seconds}s")
 
 
 def write_tags(filename, tags):
@@ -435,7 +422,7 @@ def write_tags(filename, tags):
         f1.day = date[2]
         # f1.track = tags["track_number"]
         # f1.tracktotal = tags["total_tracks"]
-        # f1.disc = str(tags["disc_number"])
+        # f1.disc = f"{tags["disc_number"]}
         # f1.disctotal = tags["total_discs"]
         f1.genre = tags["genre"]
         f1.albumartist = tags["album_artist"]
@@ -452,8 +439,8 @@ def write_tags(filename, tags):
 
         f2 = FLAC(filename)
         f2["Artist"] = tags["artists"]
-        f2["tracknumber"] = [str(tags["track_number"])]
-        f2["discnumber"] = [str(tags["disc_number"])]
+        f2["tracknumber"] = [f"{tags['track_number']}"]
+        f2["discnumber"] = [f"{tags['disc_number']}"]
 
         f2.save()
 
@@ -485,7 +472,7 @@ def write_tags(filename, tags):
 def get_artwork(filename, query):
     print("\nSearching artwork...")
 
-    if ("./bin/itunes-artwork-downloader.exe"):
+    if "./bin/itunes-artwork-downloader.exe":
         call(
             [
                 os.path.join("./bin/itunes-artwork-downloader.exe"),
@@ -500,7 +487,10 @@ def get_artwork(filename, query):
 
             return art_filename.read()
     else:
-        print("ERROR: iTunes Artwork downloader binary not found, please check the README and follow the instructions to get it installed.")
+        print(
+            "ERROR: iTunes Artwork downloader binary not found, please check the README and follow the instructions to get it installed."
+        )
+
 
 def sanitize(text):
     return re.sub(
