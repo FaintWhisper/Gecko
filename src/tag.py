@@ -25,6 +25,7 @@ OPTIONS = []
 
 
 def main():
+    print_header()
     init()
     request_options()
 
@@ -46,6 +47,12 @@ def main():
         tag_song(filename)
 
 
+def print_header():
+    print("")
+    print("--- Gecko: Music Tagger ---".center(os.get_terminal_size().columns))
+    print("")
+
+
 def init():
     for index, argument in enumerate(sys.argv):
         if argument == "-i":
@@ -58,8 +65,8 @@ def init():
                 i += 1
         elif argument == "-o" and os.path.isdir(sys.argv[index + 1]):
             OUTPUT.append(sys.argv[index + 1])
-        elif argument == "-q":
-            OPTIONS.append("-q")
+        elif argument[0] == "-":
+            OPTIONS.append(argument)
 
 
 def request_options():
@@ -134,7 +141,7 @@ def tag_song(filename):
         query = [input("Search query: ")]
     else:
         query = guess_title(filename)
-        sys.stdout.write("\nSearching track: " + '"' + capitalize_string(query[0]))
+        sys.stdout.write("Searching track: " + '"' + capitalize_string(query[0]))
 
         if len(query) > 1:
             sys.stdout.write(" - ")
@@ -209,7 +216,7 @@ def guess_title(filename):
 def get_tags(filename, query):
     option = 0
 
-    if "-l" in OPTIONS:
+    if "-l" in OPTIONS or "-A" not in OPTIONS:
         results = itunespy.search_track(" ".join(query), limit=10)
 
         for index, result in enumerate(results):
@@ -344,19 +351,11 @@ def correct_tags(filename, tags):
     if mix_version != None and len(mix_version.group(1)) > 0:
         title += mix_version
 
-    artist = tags["artists"][0]
-
-    if os.path.exists("./bin/get-genre-beatport.exe"):
-        p = subprocess.Popen(
-            ["./bin/get-genre-beatport.exe", title, artist], stdout=subprocess.PIPE
-        )
-        genre = p.stdout.read().strip()
-
-        if genre != "null":
-            tags["genre"] = genre
-
     if tags["genre"] == "Urbano latino":
         tags["genre"] = "Reggaetón"
+
+    if tags["genre"] == "Pop Latino":
+        tags["genre"] = "Latin Pop"
 
     if "Alternative" in tags["genre"]:
         tags["genre"] = tags["genre"].replace("Alternative", "Indie")
@@ -389,11 +388,11 @@ def print_tags(tags):
     else:
         sys.stdout.write(tags["artists"][0])
 
-    print("\nRelease Date: " + tags["release_date"])
-    print(f"Track Number: " + {tags["track_number"]})
-    print("Genre: " + tags["genre"])
-    print("Album Artist: " + tags["album_artist"])
-    print(f"Disc Number: " + {tags["disc_number"]})
+    print(f'\nRelease Date: {tags["release_date"]}')
+    print(f'Track Number: {str(tags["track_number"])}')
+    print(f'Genre: {tags["genre"]}')
+    print(f'Album Artist: {tags["album_artist"]}')
+    print(f'Disc Number: {str(tags["disc_number"])}')
     minutes = int(tags["duration"] / 1000 / 60)
     seconds = int(tags["duration"] / 1000 / 60 % 1 * 100)
     print(f"Duration: {minutes}m {seconds}s")
@@ -403,6 +402,7 @@ def write_tags(filename, tags):
     f1 = MediaFile(filename)
     writeTags = "y"
     showMoreOptions = "n"
+    date = tags["release_date"].split("-")
 
     if not "-A" in OPTIONS:
         writeTags = input("\nWrite tags? (y/n): ")
@@ -417,9 +417,9 @@ def write_tags(filename, tags):
         f1.title = tags["title"]
         f1.album = tags["album_title"]
         # f1.artist = tags["artists"]
-        f1.year = date[0]
+        f1.day = date[0]
         f1.month = date[1]
-        f1.day = date[2]
+        f1.year = date[2]
         # f1.track = tags["track_number"]
         # f1.tracktotal = tags["total_tracks"]
         # f1.disc = f"{tags["disc_number"]}
@@ -500,7 +500,7 @@ def sanitize(text):
             "(?:\boriginal\b|\bextended\b||\binstrumental\b) (?:\bmix\b|\bedit\b|\bversion\b)",
             "",
             re.sub(
-                r"\(?feat\.? [\w ]+\)?", "", os.path.basename(text.replace("_", " "))
+                r"\(?feat\.? [\w &]+\)?", "", os.path.basename(text.replace("_", " "))
             ),
             flags=re.IGNORECASE,
         ),

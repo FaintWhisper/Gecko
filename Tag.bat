@@ -1,14 +1,10 @@
 @echo off
 
-Title Gecko Music Tagger
+Title Gecko: Music Tagger
 
 :: Change these paths according to your needs
 set INPUT_PATH="C:\Users\amit1\Downloads"
 set OUTPUT_PATH="C:\Users\amit1\Music"
-
-echo.
-echo 						--- Gecko Music Tagger ---
-echo.
 
 if %1.==. (
     @echo on
