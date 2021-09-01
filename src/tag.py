@@ -359,6 +359,9 @@ def correct_tags(filename, tags):
 
     if "Alternative" in tags["genre"]:
         tags["genre"] = tags["genre"].replace("Alternative", "Indie")
+    
+    if "Alternativo" in tags["genre"]:
+        tags["genre"] = tags["genre"].replace("Alternativo", "Indie")
 
     if " - Single" in tags["album_title"]:
         tags["album_title"].replace(" - Single", "")
@@ -461,7 +464,10 @@ def write_tags(filename, tags):
             if os.path.exists(dest):
                 os.remove(dest)
 
-            shutil.move(filename, OUTPUT[0])
+            if os.path.exists(filename):
+              shutil.move(filename, OUTPUT[0])
+            elif os.path.exists(title):
+              shutil.move(title, OUTPUT[0])
 
     if writeTags == "n" and not "-A" in OPTIONS:
         showMoreOptions = input("Show more options? (y/n): ")
