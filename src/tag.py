@@ -432,8 +432,11 @@ def write_tags(filename, tags):
 
         # Drops "Album Artist" Tag
         f1.__dict__["mgfile"].pop("album artist")
-
-        os.chdir(os.path.dirname(filename))
+        
+        file_dir = os.path.dirname(filename)
+        
+        if (file_dir != ""):
+          os.chdir(file_dir)
 
         if not "-p" in OPTIONS:
             f1.art = get_artwork(filename, (tags["album_title"], tags["album_artist"]))
